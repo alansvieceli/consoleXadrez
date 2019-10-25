@@ -16,5 +16,10 @@ namespace Tabuleiro {
         public Peca getPeca(int linha, int coluna) {
             return pecas[linha, coluna];
         }
+
+        public void addPeca(Peca p, Posicao pos) {
+            pecas[pos.linha, pos.coluna] = p;
+            p.posicao = pos;
+        }
     }
 }

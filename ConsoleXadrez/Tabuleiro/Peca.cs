@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace Tabuleiro {
     class Peca {
 
@@ -8,8 +9,8 @@ namespace Tabuleiro {
         public int qtdeMovimentos { get; protected set; }
         public Tabuleiro tabuleiro { get; protected set; }
 
-        public Peca(Posicao posicao, Tabuleiro tabuleiro, Cor cor) {
-            this.posicao = posicao;
+        public Peca(Tabuleiro tabuleiro, Cor cor) {
+            this.posicao = null;
             this.cor = cor;
             this.tabuleiro = tabuleiro;
             this.qtdeMovimentos = 0;
