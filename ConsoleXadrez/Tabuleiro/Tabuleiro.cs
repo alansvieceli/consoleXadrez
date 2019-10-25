@@ -31,6 +31,18 @@ namespace Tabuleiro {
             p.posicao = pos;
         }
 
+        public Peca removePeca(Posicao pos) {
+            Peca p = getPeca(pos);
+            
+            if (p == null) {
+                return null;
+            }
+
+            p.posicao = null;
+            pecas[pos.linha, pos.coluna] = null;
+            return p;
+        }
+
         public bool existePeca(Posicao pos) {
             validarPosicao(pos);
             return getPeca(pos) != null;
