@@ -11,7 +11,7 @@ namespace ConsoleXadrez {
 
                 tab.addPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
                 tab.addPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
-                tab.addPeca(new Rei(tab, Cor.Preta), new Posicao(2, 4));
+                tab.addPeca(new Rei(tab, Cor.Branca), new Posicao(2, 4));
 
                 Tela.imprimirTabuleiro(tab);
 
