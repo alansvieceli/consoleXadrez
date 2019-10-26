@@ -9,13 +9,7 @@ namespace ConsoleXadrez {
             for (int l = 0; l < tabuleiro.linhas; l++) {
                 Console.Write(8 - l + " ");
                 for (int c = 0; c < tabuleiro.colunas; c++) {
-
-                    if (tabuleiro.getPeca(l, c) == null) {
-                        Console.Write("- ");
-                    } else {
-                        imprimirPeca(tabuleiro.getPeca(l, c));
-                        Console.Write(" ");
-                    }
+                    imprimirPeca(tabuleiro.getPeca(l, c));
                 }
                 Console.WriteLine();
             }
@@ -24,15 +18,20 @@ namespace ConsoleXadrez {
 
         public static void imprimirPeca(Peca p) {
 
-            ConsoleColor c = Console.ForegroundColor;
-            if (p.cor == Cor.Branca) {
-                Console.ForegroundColor = ConsoleColor.Red;
+            if (p == null) {
+                Console.Write("- ");
             } else {
-                Console.ForegroundColor = ConsoleColor.Green;
-            }
+                ConsoleColor c = Console.ForegroundColor;
+                if (p.cor == Cor.Branca) {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                } else {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
 
-            Console.Write(p);
-            Console.ForegroundColor = c;
+                Console.Write(p);
+                Console.ForegroundColor = c;
+                Console.Write(" ");
+            }
 
         }
 

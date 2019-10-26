@@ -18,12 +18,6 @@ namespace Xadrez {
             return "R";
         }
 
-        private bool podeMover(Posicao pos) {
-            Peca p = tabuleiro.getPeca(pos);
-            return (p == null) || (p.cor != this.cor);
-
-        }
-
         public override bool[,] movimentosPossiveis() {
             bool[,] matriz = new bool[tabuleiro.linhas, tabuleiro.colunas];
 

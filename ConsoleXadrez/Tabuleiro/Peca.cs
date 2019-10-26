@@ -16,6 +16,11 @@ namespace Tabuleiro {
             this.qtdeMovimentos = 0;
         }
 
+        protected bool podeMover(Posicao pos) {
+            Peca p = tabuleiro.getPeca(pos);
+            return (p == null) || (p.cor != this.cor);
+        }
+
         public void incrementarQtdeMovimentos() {
             qtdeMovimentos++;
 

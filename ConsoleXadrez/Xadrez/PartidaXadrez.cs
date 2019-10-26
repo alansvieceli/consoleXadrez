@@ -19,6 +19,7 @@ namespace Xadrez {
 
         private void colocarPecas() {
             tabuleiro.addPeca(new Torre(tabuleiro, Cor.Branca), new PosicaoXadrez('c', 4).toPosicao());
+            tabuleiro.addPeca(new Rei(tabuleiro, Cor.Branca), new PosicaoXadrez('f', 3).toPosicao());
         }
 
         public void executarMovimento(Posicao posOrigem, Posicao posDestino) {
