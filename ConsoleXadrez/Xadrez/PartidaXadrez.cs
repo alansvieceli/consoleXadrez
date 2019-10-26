@@ -7,11 +7,13 @@ namespace Xadrez {
         public Tabuleiro.Tabuleiro tabuleiro { get; private set; }
         private int turno;
         private Cor jogador;
+        public bool terminada { get; private set; }
 
         public PartidaXadrez() {
             this.tabuleiro = new Tabuleiro.Tabuleiro(8, 8);
             this.turno = 1;
             this.jogador = Cor.Branca; //no xadrez sempre quem inicia são as brancas
+            this.terminada = false;
             colocarPecas();
         }
 

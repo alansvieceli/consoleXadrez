@@ -9,7 +9,24 @@ namespace ConsoleXadrez {
             try {
                 PartidaXadrez partida = new PartidaXadrez();
 
-                Tela.imprimirTabuleiro(partida.tabuleiro);
+                
+
+
+                while (!partida.terminada) {
+
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partida.tabuleiro);
+
+                    Console.WriteLine();
+                    Console.Write("Posicao ORIGEM: ");
+                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+
+                    Console.Write("Posicao DESTINO: ");
+                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+
+                    partida.executarMovimento(origem, destino);
+
+                }
 
                 Console.ReadLine();
             }

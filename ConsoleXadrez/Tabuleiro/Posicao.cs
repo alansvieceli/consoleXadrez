@@ -7,11 +7,15 @@ namespace Tabuleiro {
         public int coluna { get; set; }
 
         public Posicao(int linha, int coluna) {
+            definirValores(linha, coluna);
+        }
+
+        public void definirValores(int linha, int coluna) {
             this.linha = linha;
             this.coluna = coluna;
         }
 
-        public override string ToString() {
+    public override string ToString() {
             return linha + ", " + coluna;
         }
     }
