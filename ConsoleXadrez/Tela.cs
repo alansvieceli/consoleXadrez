@@ -16,6 +16,28 @@ namespace ConsoleXadrez {
             Console.WriteLine("  a b c d e f g h");
         }
 
+        internal static void imprimirTabuleiro(Tabuleiro.Tabuleiro tabuleiro, bool[,] possicoesPossiveis) {
+
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+
+            for (int l = 0; l < tabuleiro.linhas; l++) {
+                Console.Write(8 - l + " ");
+                for (int c = 0; c < tabuleiro.colunas; c++) {
+                    if (possicoesPossiveis[l, c]) {
+                        Console.BackgroundColor = fundoAlterado;
+                    } else {
+                        Console.BackgroundColor = fundoOriginal;
+                    }
+                    imprimirPeca(tabuleiro.getPeca(l, c));
+                    Console.BackgroundColor = fundoOriginal;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("  a b c d e f g h");
+            Console.BackgroundColor = fundoOriginal;
+        }
+
         public static void imprimirPeca(Peca p) {
 
             if (p == null) {

@@ -25,29 +25,29 @@ namespace Xadrez {
 
             PosisoesTestes[] direcoes = new PosisoesTestes[8];
             //Norte
-            direcoes[0].linha = pos.linha - 1;
-            direcoes[0].coluna = pos.coluna;
+            direcoes[0].linha = posicao.linha - 1;
+            direcoes[0].coluna = posicao.coluna;
             //Nordeste
-            direcoes[0].linha = pos.linha - 1;
-            direcoes[0].coluna = pos.coluna + 1;
+            direcoes[1].linha = posicao.linha - 1;
+            direcoes[1].coluna = posicao.coluna + 1;
             //Leste
-            direcoes[0].linha = pos.linha;
-            direcoes[0].coluna = pos.coluna + 1;
+            direcoes[2].linha = posicao.linha;
+            direcoes[2].coluna = posicao.coluna + 1;
             //Sudeste
-            direcoes[0].linha = pos.linha + 1;
-            direcoes[0].coluna = pos.coluna + 1;
+            direcoes[3].linha = posicao.linha + 1;
+            direcoes[3].coluna = posicao.coluna + 1;
             //Sul
-            direcoes[0].linha = pos.linha + 1;
-            direcoes[0].coluna = pos.coluna;
+            direcoes[4].linha = posicao.linha + 1;
+            direcoes[4].coluna = posicao.coluna;
             //Sudoeste
-            direcoes[0].linha = pos.linha + 1;
-            direcoes[0].coluna = pos.coluna - 1;
+            direcoes[5].linha = posicao.linha + 1;
+            direcoes[5].coluna = posicao.coluna - 1;
             //Oeste
-            direcoes[0].linha = pos.linha;
-            direcoes[0].coluna = pos.coluna - 1;
+            direcoes[6].linha = posicao.linha;
+            direcoes[6].coluna = posicao.coluna - 1;
             //Noroeste
-            direcoes[0].linha = pos.linha - 1;
-            direcoes[0].coluna = pos.coluna - 1;
+            direcoes[7].linha = posicao.linha - 1;
+            direcoes[7].coluna = posicao.coluna - 1;
 
             foreach (PosisoesTestes element in direcoes) {
 
