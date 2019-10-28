@@ -26,6 +26,20 @@ namespace Tabuleiro {
 
         }
 
+        public bool existeMovimentosPossiveis() {
+            bool[,] matrix = movimentosPossiveis();
+
+            for (int l = 0; l < tabuleiro.linhas; l++) {
+                Console.Write(8 - l + " ");
+                for (int c = 0; c < tabuleiro.colunas; c++) {
+                    if (matrix[l,c]) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public abstract bool[,] movimentosPossiveis();
     }
 }
