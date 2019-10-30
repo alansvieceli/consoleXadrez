@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Tabuleiro;
 
 namespace Xadrez {
@@ -8,18 +9,61 @@ namespace Xadrez {
         public int turno { get; private set; }
         public Cor jogadorAtual { get; private set; }
         public bool terminada { get; private set; }
+        private HashSet<Peca> pecas;
+        private HashSet<Peca> capturadas;
 
         public PartidaXadrez() {
             this.tabuleiro = new Tabuleiro.Tabuleiro(8, 8);
             this.turno = 1;
             this.jogadorAtual = Cor.Branca; //no xadrez sempre quem inicia são as brancas
             this.terminada = false;
+            this.pecas = new HashSet<Peca>();
+            this.capturadas = new HashSet<Peca>();
             colocarPecas();
         }
 
+        public HashSet<Peca> pecasCapturadas(Cor cor) {
+            HashSet<Peca> aux = new HashSet<Peca>();
+
+            foreach (Peca p in this.capturadas) {
+                if (p.cor.Equals(cor)) {
+                    aux.Add(p);
+                }
+
+            }
+
+            return aux;
+        }
+
+        public HashSet<Peca> pecasEmJogo(Cor cor) {
+            HashSet<Peca> aux = new HashSet<Peca>();
+
+            foreach (Peca p in this.pecas) {
+                if (p.cor.Equals(cor)) {
+                    aux.Add(p);
+                }
+
+            }
+            aux.ExceptWith(pecasCapturadas(cor));
+            return aux;
+        }
+
+        public void colorNovaPeca(Peca peca, char coluna, int linha) {
+            this.tabuleiro.addPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
+            pecas.Add(peca);
+        }
+
         private void colocarPecas() {
-            tabuleiro.addPeca(new Torre(tabuleiro, Cor.Branca), new PosicaoXadrez('c', 4).toPosicao());
-            tabuleiro.addPeca(new Rei(tabuleiro, Cor.Branca), new PosicaoXadrez('f', 3).toPosicao());
+
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'a', 8);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'h', 8);
+            colorNovaPeca(new Rei(this.tabuleiro, Cor.Preta), 'e', 8);
+
+
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'a', 1);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'h', 1);
+            colorNovaPeca(new Rei(this.tabuleiro, Cor.Branca), 'e', 1);
+
         }
 
         public void realizaJogada(Posicao posOrigem, Posicao posDestino) {
@@ -35,7 +79,7 @@ namespace Xadrez {
                 throw new TabuleiroException("Não existe peça na posição escolhida!");
             }
 
-            if (p.cor != jogadorAtual) {
+            if (p.cor != this.jogadorAtual) {
                 throw new TabuleiroException("A Peça escolhida não é sua.");
             }
 
@@ -53,8 +97,8 @@ namespace Xadrez {
         }
 
         private void mudaJogador() {
-            Cor novaCor = (jogadorAtual == Cor.Branca) ? Cor.Preta : Cor.Branca;
-            jogadorAtual = novaCor;
+            Cor novaCor = (this.jogadorAtual == Cor.Branca) ? Cor.Preta : Cor.Branca;
+            this.jogadorAtual = novaCor;
         }
 
         private void executarMovimento(Posicao posOrigem, Posicao posDestino) {
@@ -63,6 +107,10 @@ namespace Xadrez {
 
             Peca capturada = tabuleiro.removePeca(posDestino);
             tabuleiro.addPeca(p, posDestino);
+
+            if (capturada != null) {
+                capturadas.Add(capturada);
+            }
 
         }
 

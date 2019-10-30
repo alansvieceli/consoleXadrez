@@ -7,18 +7,14 @@ namespace ConsoleXadrez {
         static void Main(string[] args) {
 
             try {
-                PartidaXadrez partida = new PartidaXadrez();       
+                PartidaXadrez partida = new PartidaXadrez();
 
 
                 while (!partida.terminada) {
 
                     try {
                         Console.Clear();
-                        Tela.imprimirTabuleiro(partida.tabuleiro);
-
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.turno);
-                        Console.WriteLine("Aguardando jogada da: " + partida.jogadorAtual);
+                        Tela.imprimirPartida(partida);
 
                         Console.WriteLine();
                         Console.Write("Posicao ORIGEM: ");

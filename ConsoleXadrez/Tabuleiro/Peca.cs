@@ -17,21 +17,21 @@ namespace Tabuleiro {
         }
 
         protected bool podeMover(Posicao pos) {
-            Peca p = tabuleiro.getPeca(pos);
+            Peca p = this.tabuleiro.getPeca(pos);
             return (p == null) || (p.cor != this.cor);
         }
 
         public void incrementarQtdeMovimentos() {
-            qtdeMovimentos++;
+            this.qtdeMovimentos++;
 
         }
 
         public bool existeMovimentosPossiveis() {
             bool[,] matrix = movimentosPossiveis();
 
-            for (int l = 0; l < tabuleiro.linhas; l++) {
+            for (int l = 0; l < this.tabuleiro.linhas; l++) {
                 Console.Write(8 - l + " ");
-                for (int c = 0; c < tabuleiro.colunas; c++) {
+                for (int c = 0; c < this.tabuleiro.colunas; c++) {
                     if (matrix[l,c]) {
                         return true;
                     }

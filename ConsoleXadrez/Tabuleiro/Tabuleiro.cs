@@ -49,7 +49,7 @@ namespace Tabuleiro {
         }
 
         public bool posicaoValida(Posicao pos) {
-            return !((pos.linha < 0) || (pos.linha >= linhas) || (pos.coluna < 0) || (pos.coluna >= colunas));
+            return !((pos.linha < 0) || (pos.linha >= this.linhas) || (pos.coluna < 0) || (pos.coluna >= this.colunas));
         }
 
         public void validarPosicao(Posicao pos) {

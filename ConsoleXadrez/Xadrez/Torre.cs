@@ -39,16 +39,16 @@ namespace Xadrez {
             Posicao pos = new Posicao(0, 0);
 
             //acima
-            verificarPecas(posicao.linha - 1, posicao.coluna, pos, matriz, IncQualCampo.LINHA, -1);
+            verificarPecas(base.posicao.linha - 1, base.posicao.coluna, pos, matriz, IncQualCampo.LINHA, -1);
 
             //abaixo
-            verificarPecas(posicao.linha + 1, posicao.coluna, pos, matriz, IncQualCampo.LINHA, -1);
+            verificarPecas(base.posicao.linha + 1, base.posicao.coluna, pos, matriz, IncQualCampo.LINHA, -1);
 
             //direita
-            verificarPecas(posicao.linha, posicao.coluna + 1, pos, matriz, IncQualCampo.COLUNA, 1);
+            verificarPecas(base.posicao.linha, base.posicao.coluna + 1, pos, matriz, IncQualCampo.COLUNA, 1);
 
             //esquerda
-            verificarPecas(posicao.linha, posicao.coluna - 1, pos, matriz, IncQualCampo.COLUNA, -1);
+            verificarPecas(base.posicao.linha, base.posicao.coluna - 1, pos, matriz, IncQualCampo.COLUNA, -1);
 
             return matriz;
         }
