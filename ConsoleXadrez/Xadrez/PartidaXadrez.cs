@@ -111,13 +111,17 @@ namespace Xadrez {
         private void colocarPecas() {
 
             colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'a', 8);
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'h', 8);
+            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Preta), 'c', 8);           
             colorNovaPeca(new Rei(this.tabuleiro, Cor.Preta), 'e', 8);
+            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Preta), 'f', 8);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'h', 8);
 
-
+                                 
             colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'a', 1);
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'h', 1);
+            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Branca), 'c', 1);
             colorNovaPeca(new Rei(this.tabuleiro, Cor.Branca), 'e', 1);
+            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Branca), 'f', 1);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'h', 1);
 
         }
 
