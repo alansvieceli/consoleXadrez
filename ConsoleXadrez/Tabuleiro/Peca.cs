@@ -23,7 +23,10 @@ namespace Tabuleiro {
 
         public void incrementarQtdeMovimentos() {
             this.qtdeMovimentos++;
+        }
 
+        public void decrementarQtdeMovimentos() {
+            this.qtdeMovimentos--;
         }
 
         public bool existeMovimentosPossiveis() {

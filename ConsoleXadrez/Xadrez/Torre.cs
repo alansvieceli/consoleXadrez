@@ -42,7 +42,7 @@ namespace Xadrez {
             verificarPecas(base.posicao.linha - 1, base.posicao.coluna, pos, matriz, IncQualCampo.LINHA, -1);
 
             //abaixo
-            verificarPecas(base.posicao.linha + 1, base.posicao.coluna, pos, matriz, IncQualCampo.LINHA, -1);
+            verificarPecas(base.posicao.linha + 1, base.posicao.coluna, pos, matriz, IncQualCampo.LINHA, 1);
 
             //direita
             verificarPecas(base.posicao.linha, base.posicao.coluna + 1, pos, matriz, IncQualCampo.COLUNA, 1);

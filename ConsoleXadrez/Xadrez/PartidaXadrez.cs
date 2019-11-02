@@ -11,6 +11,7 @@ namespace Xadrez {
         public bool terminada { get; private set; }
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
+        public bool xeque { get; private set; }
 
         public PartidaXadrez() {
             this.tabuleiro = new Tabuleiro.Tabuleiro(8, 8);
@@ -19,6 +20,7 @@ namespace Xadrez {
             this.terminada = false;
             this.pecas = new HashSet<Peca>();
             this.capturadas = new HashSet<Peca>();
+            this.xeque = false;
             colocarPecas();
         }
 
@@ -53,21 +55,16 @@ namespace Xadrez {
             pecas.Add(peca);
         }
 
-        private void colocarPecas() {
-
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'a', 8);
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'h', 8);
-            colorNovaPeca(new Rei(this.tabuleiro, Cor.Preta), 'e', 8);
-
-
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'a', 1);
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'h', 1);
-            colorNovaPeca(new Rei(this.tabuleiro, Cor.Branca), 'e', 1);
-
-        }
-
         public void realizaJogada(Posicao posOrigem, Posicao posDestino) {
-            executarMovimento(posOrigem, posDestino);
+            Peca capturda = executarMovimento(posOrigem, posDestino);
+
+            if (estaEmXeque(jogadorAtual)) {
+                desfazMovimento(posOrigem, posDestino, capturda);
+                throw new TabuleiroException("Você não se pode colocar em cheque!");
+            }
+
+            xeque = estaEmXeque(corAdversaria(jogadorAtual));
+
             turno++;
             mudaJogador();
         }
@@ -96,12 +93,40 @@ namespace Xadrez {
 
         }
 
+        public bool estaEmXeque(Cor cor) {
+            Peca R = rei(cor);
+            if (R == null) {
+                throw new TabuleiroException("Não tem rei da cor " + cor + " no tabuleiro!");
+            }
+
+            foreach(Peca p in pecasEmJogo(corAdversaria(cor))) {
+                bool[,] mat = p.movimentosPossiveis();
+                if (mat[R.posicao.linha, R.posicao.coluna]) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void colocarPecas() {
+
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'a', 8);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'h', 8);
+            colorNovaPeca(new Rei(this.tabuleiro, Cor.Preta), 'e', 8);
+
+
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'a', 1);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'h', 1);
+            colorNovaPeca(new Rei(this.tabuleiro, Cor.Branca), 'e', 1);
+
+        }
+
         private void mudaJogador() {
             Cor novaCor = (this.jogadorAtual == Cor.Branca) ? Cor.Preta : Cor.Branca;
             this.jogadorAtual = novaCor;
         }
 
-        private void executarMovimento(Posicao posOrigem, Posicao posDestino) {
+        private Peca executarMovimento(Posicao posOrigem, Posicao posDestino) {
             Peca p = tabuleiro.removePeca(posOrigem);
             p.incrementarQtdeMovimentos();
 
@@ -112,7 +137,36 @@ namespace Xadrez {
                 capturadas.Add(capturada);
             }
 
+            return capturada;
         }
 
+        private void desfazMovimento(Posicao posOrigem, Posicao posDestino, Peca capturada) {
+            Peca p = tabuleiro.removePeca(posDestino);
+            p.decrementarQtdeMovimentos();
+
+            if (capturada != null) {
+                tabuleiro.addPeca(capturada, posDestino);
+                capturadas.Remove(capturada);
+            }
+
+            tabuleiro.addPeca(p, posOrigem);
+
+        }
+
+        private Cor corAdversaria(Cor cor) {
+
+            return cor.Equals(Cor.Branca) ? Cor.Preta : Cor.Branca;
+
+        }
+
+        private Rei rei(Cor cor) {
+            foreach(Peca p in pecasEmJogo(cor)) {
+                if (p is Rei) {
+                    return (Rei) p;
+                }
+            }
+
+            return null;
+        }
     }
 }
