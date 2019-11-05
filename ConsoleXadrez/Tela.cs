@@ -32,14 +32,14 @@ namespace ConsoleXadrez {
 
             ConsoleColor aux = Console.ForegroundColor;
 
-            Console.Write("Brancas: ");
+            Console.Write("Vermelhas: ");
             Console.ForegroundColor = ConsoleColor.Red;
-            imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
+            imprimirConjunto(partida.pecasCapturadas(Cor.Vermelha));
 
             Console.ForegroundColor = aux;
-            Console.Write("Pretas ");
+            Console.Write("Verdes ");
             Console.ForegroundColor = ConsoleColor.Green;
-            imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
+            imprimirConjunto(partida.pecasCapturadas(Cor.Verde));
 
             Console.ForegroundColor = aux;
 
@@ -92,7 +92,7 @@ namespace ConsoleXadrez {
                 Console.Write("- ");
             } else {
                 ConsoleColor c = Console.ForegroundColor;
-                if (p.cor == Cor.Branca) {
+                if (p.cor == Cor.Vermelha) {
                     Console.ForegroundColor = ConsoleColor.Red;
                 } else {
                     Console.ForegroundColor = ConsoleColor.Green;

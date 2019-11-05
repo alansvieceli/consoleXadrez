@@ -6,7 +6,7 @@ namespace Tabuleiro {
         Preta,
         Amarela,
         Azul,
-        Vermelho,
+        Vermelha,
         Verde
     }
 }

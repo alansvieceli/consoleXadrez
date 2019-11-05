@@ -16,7 +16,7 @@ namespace Xadrez {
         public PartidaXadrez() {
             this.tabuleiro = new Tabuleiro.Tabuleiro(8, 8);
             this.turno = 1;
-            this.jogadorAtual = Cor.Branca; //no xadrez sempre quem inicia são as brancas
+            this.jogadorAtual = Cor.Vermelha; //no xadrez sempre quem inicia são as Vermelhas
             this.terminada = false;
             this.pecas = new HashSet<Peca>();
             this.capturadas = new HashSet<Peca>();
@@ -147,47 +147,47 @@ namespace Xadrez {
 
         private void colocarPecas() {
 
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'a', 8);
-            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Preta), 'b', 8);
-            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Preta), 'c', 8);
-            colorNovaPeca(new Rainha(this.tabuleiro, Cor.Preta), 'd', 8);
-            colorNovaPeca(new Rei(this.tabuleiro, Cor.Preta), 'e', 8);
-            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Preta), 'f', 8);
-            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Preta), 'g', 8);
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'h', 8);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Verde), 'a', 8);
+            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Verde), 'b', 8);
+            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Verde), 'c', 8);
+            colorNovaPeca(new Rainha(this.tabuleiro, Cor.Verde), 'd', 8);
+            colorNovaPeca(new Rei(this.tabuleiro, Cor.Verde), 'e', 8);
+            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Verde), 'f', 8);
+            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Verde), 'g', 8);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Verde), 'h', 8);
 
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'a', 7);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'b', 7);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'c', 7);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'd', 7);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'e', 7);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'f', 7);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'g', 7);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'h', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Verde, this), 'a', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Verde, this), 'b', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Verde, this), 'c', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Verde, this), 'd', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Verde, this), 'e', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Verde, this), 'f', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Verde, this), 'g', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Verde, this), 'h', 7);
 
 
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'a', 1);
-            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Branca), 'b', 1);
-            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Branca), 'c', 1);
-            colorNovaPeca(new Rainha(this.tabuleiro, Cor.Branca), 'd', 1);
-            colorNovaPeca(new Rei(this.tabuleiro, Cor.Branca), 'e', 1);
-            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Branca), 'f', 1);
-            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Branca), 'g', 1);
-            colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'h', 1);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Vermelha), 'a', 1);
+            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Vermelha), 'b', 1);
+            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Vermelha), 'c', 1);
+            colorNovaPeca(new Rainha(this.tabuleiro, Cor.Vermelha), 'd', 1);
+            colorNovaPeca(new Rei(this.tabuleiro, Cor.Vermelha), 'e', 1);
+            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Vermelha), 'f', 1);
+            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Vermelha), 'g', 1);
+            colorNovaPeca(new Torre(this.tabuleiro, Cor.Vermelha), 'h', 1);
 
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'a', 2);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'b', 2);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'c', 2);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'd', 2);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'e', 2);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'f', 2);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'g', 2);
-            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'h', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Vermelha, this), 'a', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Vermelha, this), 'b', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Vermelha, this), 'c', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Vermelha, this), 'd', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Vermelha, this), 'e', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Vermelha, this), 'f', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Vermelha, this), 'g', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Vermelha, this), 'h', 2);
 
         }
 
         private void mudaJogador() {
-            Cor novaCor = (this.jogadorAtual == Cor.Branca) ? Cor.Preta : Cor.Branca;
+            Cor novaCor = (this.jogadorAtual == Cor.Vermelha) ? Cor.Verde : Cor.Vermelha;
             this.jogadorAtual = novaCor;
         }
 
@@ -220,7 +220,7 @@ namespace Xadrez {
 
         private Cor corAdversaria(Cor cor) {
 
-            return cor.Equals(Cor.Branca) ? Cor.Preta : Cor.Branca;
+            return cor.Equals(Cor.Vermelha) ? Cor.Verde : Cor.Vermelha;
 
         }
 

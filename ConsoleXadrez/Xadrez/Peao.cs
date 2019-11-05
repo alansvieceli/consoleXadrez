@@ -27,7 +27,7 @@ namespace Xadrez {
 
             Posicao pos = new Posicao(0, 0);
 
-            if (cor == Cor.Branca) {
+            if (cor == Cor.Vermelha) {
                 pos.definirValores(base.posicao.linha - 1, base.posicao.coluna);
                 if (base.tabuleiro.posicaoValida(pos) && livre(pos)) {
                     mat[pos.linha, pos.coluna] = true;
