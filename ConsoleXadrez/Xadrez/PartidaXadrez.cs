@@ -92,7 +92,7 @@ namespace Xadrez {
         }
 
         public void ValidarPosicaoDestino(Posicao posOrigem, Posicao posDestino) {
-            if (!tabuleiro.getPeca(posOrigem).podeMoverPara(posDestino)) {
+            if (!tabuleiro.getPeca(posOrigem).movimentoPossivel(posDestino)) {
                 throw new TabuleiroException("Posição destino inválida!");
             }
 
@@ -104,7 +104,7 @@ namespace Xadrez {
                 throw new TabuleiroException("Não tem rei da cor " + cor + " no tabuleiro!");
             }
 
-            foreach(Peca p in pecasEmJogo(corAdversaria(cor))) {
+            foreach (Peca p in pecasEmJogo(corAdversaria(cor))) {
                 bool[,] mat = p.movimentosPossiveis();
                 if (mat[R.posicao.linha, R.posicao.coluna]) {
                     return true;
@@ -118,11 +118,11 @@ namespace Xadrez {
                 return false;
             }
 
-            foreach(Peca p in pecasEmJogo(cor)) {
+            foreach (Peca p in pecasEmJogo(cor)) {
                 bool[,] mat = p.movimentosPossiveis();
 
                 for (int l = 0; l < this.tabuleiro.linhas; l++) {
-    
+
                     for (int c = 0; c < this.tabuleiro.colunas; c++) {
                         if (mat[l, c]) {
                             Posicao origem = p.posicao;
@@ -148,17 +148,41 @@ namespace Xadrez {
         private void colocarPecas() {
 
             colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'a', 8);
-            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Preta), 'c', 8);           
+            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Preta), 'b', 8);
+            colorNovaPeca(new Bispo(this.tabuleiro, Cor.Preta), 'c', 8);
+            colorNovaPeca(new Rainha(this.tabuleiro, Cor.Preta), 'd', 8);
             colorNovaPeca(new Rei(this.tabuleiro, Cor.Preta), 'e', 8);
             colorNovaPeca(new Bispo(this.tabuleiro, Cor.Preta), 'f', 8);
+            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Preta), 'g', 8);
             colorNovaPeca(new Torre(this.tabuleiro, Cor.Preta), 'h', 8);
 
-                                 
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'a', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'b', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'c', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'd', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'e', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'f', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'g', 7);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Preta, this), 'h', 7);
+
+
             colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'a', 1);
+            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Branca), 'b', 1);
             colorNovaPeca(new Bispo(this.tabuleiro, Cor.Branca), 'c', 1);
+            colorNovaPeca(new Rainha(this.tabuleiro, Cor.Branca), 'd', 1);
             colorNovaPeca(new Rei(this.tabuleiro, Cor.Branca), 'e', 1);
             colorNovaPeca(new Bispo(this.tabuleiro, Cor.Branca), 'f', 1);
+            colorNovaPeca(new Cavalo(this.tabuleiro, Cor.Branca), 'g', 1);
             colorNovaPeca(new Torre(this.tabuleiro, Cor.Branca), 'h', 1);
+
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'a', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'b', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'c', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'd', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'e', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'f', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'g', 2);
+            colorNovaPeca(new Peao(this.tabuleiro, Cor.Branca, this), 'h', 2);
 
         }
 
@@ -201,9 +225,9 @@ namespace Xadrez {
         }
 
         private Rei rei(Cor cor) {
-            foreach(Peca p in pecasEmJogo(cor)) {
+            foreach (Peca p in pecasEmJogo(cor)) {
                 if (p is Rei) {
-                    return (Rei) p;
+                    return (Rei)p;
                 }
             }
 

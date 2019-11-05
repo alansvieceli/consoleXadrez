@@ -1,5 +1,4 @@
-﻿using System;
-using Tabuleiro;
+﻿using Tabuleiro;
 
 namespace Xadrez {
     class Torre : Peca {
@@ -19,9 +18,9 @@ namespace Xadrez {
 
         private void verificarPecas(int linha, int coluna, Posicao pos, bool[,] matriz, IncQualCampo inc, int valorInc) {
             pos.definirValores(linha, coluna);
-            while (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            while (base.tabuleiro.posicaoValida(pos) && podeMover(pos)) {
                 matriz[pos.linha, pos.coluna] = true;
-                Peca peca = tabuleiro.getPeca(pos);
+                Peca peca = base.tabuleiro.getPeca(pos);
                 if ((peca != null) && (peca.cor != cor)) {
                     break; //má pratica
                 }
@@ -34,7 +33,7 @@ namespace Xadrez {
         }
 
         public override bool[,] movimentosPossiveis() {
-            bool[,] matriz = new bool[tabuleiro.linhas, tabuleiro.colunas];
+            bool[,] matriz = new bool[base.tabuleiro.linhas, base.tabuleiro.colunas];
 
             Posicao pos = new Posicao(0, 0);
 

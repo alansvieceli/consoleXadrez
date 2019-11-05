@@ -19,7 +19,7 @@ namespace Xadrez {
         }
 
         public override bool[,] movimentosPossiveis() {
-            bool[,] matriz = new bool[tabuleiro.linhas, tabuleiro.colunas];
+            bool[,] matriz = new bool[base.tabuleiro.linhas, base.tabuleiro.colunas];
 
             Posicao pos = new Posicao(0, 0);
 
@@ -52,7 +52,7 @@ namespace Xadrez {
             foreach (PosisoesTestes element in direcoes) {
 
                 pos.definirValores(element.linha, element.coluna);
-                if (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+                if (base.tabuleiro.posicaoValida(pos) && base.podeMover(pos)) {
                     matriz[pos.linha, pos.coluna] = true;
                 }
 
