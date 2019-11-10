@@ -12,6 +12,7 @@ namespace Xadrez {
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
         public bool xeque { get; private set; }
+        public Peca vulneravelEnPassant { get; private set; }
 
         public PartidaXadrez() {
             this.tabuleiro = new Tabuleiro.Tabuleiro(8, 8);
@@ -21,6 +22,7 @@ namespace Xadrez {
             this.pecas = new HashSet<Peca>();
             this.capturadas = new HashSet<Peca>();
             this.xeque = false;
+            this.vulneravelEnPassant = null;
             colocarPecas();
         }
 
@@ -63,6 +65,19 @@ namespace Xadrez {
                 throw new TabuleiroException("Você não se pode colocar em cheque!");
             }
 
+            Peca p = this.tabuleiro.getPeca(posDestino);
+
+            // #jogadaespecial promocao
+            if (p is Peao) {
+                if ((p.cor == Cor.Vermelha && posDestino.linha == 0) || (p.cor == Cor.Preta && posDestino.linha == 7)) {
+                    p = tabuleiro.removePeca(posDestino);
+                    pecas.Remove(p);
+                    Peca dama = new Rainha(tabuleiro, p.cor);
+                    tabuleiro.addPeca(dama, posDestino);
+                    pecas.Add(dama);
+                }
+            }
+
             this.xeque = estaEmXeque(corAdversaria(jogadorAtual));
 
             if (estaEmXequeMate(corAdversaria(jogadorAtual))) {
@@ -70,6 +85,12 @@ namespace Xadrez {
             } else {
                 turno++;
                 mudaJogador();
+            }
+
+            if (p is Peao && (posDestino.linha == posOrigem.linha - 2 || posDestino.linha == posOrigem.linha + 2)) {
+                vulneravelEnPassant = p;
+            } else {
+                vulneravelEnPassant = null;
             }
 
         }
@@ -220,6 +241,20 @@ namespace Xadrez {
                 tabuleiro.addPeca(T, destinoT);
             }
 
+            // #jogadaespecial en passant
+            if (p is Peao) {
+                if (posOrigem.coluna != posDestino.coluna && capturada == null) {
+                    Posicao posP;
+                    if (p.cor == Cor.Vermelha) {
+                        posP = new Posicao(posDestino.linha + 1, posDestino.coluna);
+                    } else {
+                        posP = new Posicao(posDestino.linha - 1, posDestino.coluna);
+                    }
+                    capturada = tabuleiro.removePeca(posP);
+                    capturadas.Add(capturada);
+                }
+            }
+
             return capturada;
         }
 
@@ -250,6 +285,20 @@ namespace Xadrez {
                 Peca T = tabuleiro.removePeca(destinoT);
                 T.decrementarQtdeMovimentos();
                 tabuleiro.addPeca(T, origemT);
+            }
+
+            // #jogadaespecial en passant
+            if (p is Peao) {
+                if (posOrigem.coluna != posDestino.coluna && capturada == vulneravelEnPassant) {
+                    Peca peao = tabuleiro.removePeca(posDestino);
+                    Posicao posP;
+                    if (p.cor == Cor.Vermelha) {
+                        posP = new Posicao(3, posDestino.coluna);
+                    } else {
+                        posP = new Posicao(4, posDestino.coluna);
+                    }
+                    tabuleiro.addPeca(peao, posP);
+                }
             }
 
         }
