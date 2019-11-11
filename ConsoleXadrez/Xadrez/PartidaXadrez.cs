@@ -72,6 +72,7 @@ namespace Xadrez {
                 if ((p.cor == Cor.Vermelha && posDestino.linha == 0) || (p.cor == Cor.Preta && posDestino.linha == 7)) {
                     p = tabuleiro.removePeca(posDestino);
                     pecas.Remove(p);
+                    //usuario poderia escolher qualquer peça...mas vai ficar só sendo rainha
                     Peca dama = new Rainha(tabuleiro, p.cor);
                     tabuleiro.addPeca(dama, posDestino);
                     pecas.Add(dama);
